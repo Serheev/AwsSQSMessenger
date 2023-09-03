@@ -1,7 +1,7 @@
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version "$springBootVersion"
-	id 'io.spring.dependency-management' version "$springDependencyManagmentVersion"
+	id 'io.spring.dependency-management' version "$springDependencyManagementVersion"
 }
 
 group = 'com.serheev'
@@ -29,9 +29,11 @@ dependencies {
 	implementation "io.r2dbc:r2dbc-postgresql:$r2dbcVersion"
 	implementation "org.postgresql:postgresql:$postgresVersion"
 
+	implementation "org.mapstruct:mapstruct:$mapStructVersion"
+	annotationProcessor "org.mapstruct:mapstruct-processor:$mapStructVersion"
+
 	compileOnly "org.projectlombok:lombok"
 	annotationProcessor "org.projectlombok:lombok"
-	implementation "org.mapstruct:mapstruct:$mapStructVersion"
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'

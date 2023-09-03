@@ -27,6 +27,7 @@ public class AwsConfig {
         return StaticCredentialsProvider.create(AwsBasicCredentials.create(accessKey, secretKey));
     }
 
+    @Bean
     public AmazonSQSAsync amazonSQSAsync(AWSCredentialsProvider awsCredentialsProvider, @Value("${sqs.notifications.queue.region}") String region) {
         return AmazonSQSAsyncClientBuilder.standard()
                 .withCredentials(awsCredentialsProvider)
@@ -34,6 +35,7 @@ public class AwsConfig {
                 .build();
     }
 
+    @Bean
     public QueueMessagingTemplate queueMessagingTemplate(AmazonSQSAsync amazonSQSAsync) {
         return new QueueMessagingTemplate(amazonSQSAsync);
     }
