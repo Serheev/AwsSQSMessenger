@@ -1,0 +1,23 @@
+spring:
+  r2dbc:
+    url: r2dbc:pool:postgres://localhost:5432/awssqsmessenger
+    username: postgres
+    password: nokia3410
+  flyway:
+    url: jdbc:postgresql://localhost:5432/awssqsmessenger
+    user: postgres
+    password: nokia3410
+    locations: classpath:db/migrations
+  cloud:
+    aws:
+      credentials:
+        access-key: [PUT_ACCESS_KEY_FROM_AWS]
+        secret-key: [PUT_SECRET_KEY_FROM_AWS]
+      region:
+        static: eu-north-1
+
+sqs:
+  notifications:
+    queue:
+      name: serheev-sqs-demo.fifo
+      region: eu-north-1
