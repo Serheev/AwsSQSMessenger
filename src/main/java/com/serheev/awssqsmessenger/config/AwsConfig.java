@@ -22,13 +22,14 @@ public class AwsConfig {
     }
 
     @Bean
-    public AwsCredentialsProvider awsAsyncCredentialsProvider(@Value("${spring.cloud.aws.credentials.access-key}") String accessKey,
-                                                              @Value("${spring.cloud.aws.credentials.secret-key}") String secretKey) {
+    public AwsCredentialsProvider awsAsyncCredentialsProvider (@Value("${spring.cloud.aws.credentials.access-key}") String accessKey,
+                                                               @Value("${spring.cloud.aws.credentials.secret-key}") String secretKey) {
         return StaticCredentialsProvider.create(AwsBasicCredentials.create(accessKey, secretKey));
     }
 
     @Bean
-    public AmazonSQSAsync amazonSQSAsync(AWSCredentialsProvider awsCredentialsProvider, @Value("${sqs.notifications.queue.region}") String region) {
+    public AmazonSQSAsync amazonSQSAsync(AWSCredentialsProvider awsCredentialsProvider,
+                                         @Value("${sqs.notifications.queue.region}") String region) {
         return AmazonSQSAsyncClientBuilder.standard()
                 .withCredentials(awsCredentialsProvider)
                 .withRegion(region)

@@ -1,0 +1,29 @@
+version: '1.2'
+
+services:
+  serheev-awssqs-app:
+    image: serheev-awssqs-app:latest
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - R2DBC_URL=${R2DBC_URL}
+      - R2DBC_USER=${R2DBC_USER}
+      - R2DBC_PASSWORD=${R2DBC_PASSWORD}
+      - DB_URL=${DB_URL}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
+      - AWS_SECRET_KEY=${AWS_SECRET_KEY}
+      - AWS_REGION=${AWS_REGION}
+      - SQS_QUEUE_NAME=${SQS_QUEUE_NAME}
+      - SQS_QUEUE_REGION=${SQS_QUEUE_REGION}
+#      - _JAVA_OPTIONS=-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+#    ports:
+#      - '8080:8080'
+#      - '5005:5005'
+    deploy:
+      mode: replicated
+      replicas: 3

@@ -1,14 +1,12 @@
 spring:
-  config:
-    import: optional:file:.env[.properties]
   r2dbc:
-    url: ${R2DBC_URL}
-    username: ${R2DBC_USER}
-    password: ${R2DBC_PASSWORD}
+    url: r2dbc:pool:postgres://localhost:5432/awssqsmessenger
+    username: postgres
+    password: nokia3410
   flyway:
-    url: ${DB_URL}
-    user: ${DB_USER}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/awssqsmessenger
+    user: postgres
+    password: nokia3410
     locations: classpath:db/migration
   cloud:
     aws:

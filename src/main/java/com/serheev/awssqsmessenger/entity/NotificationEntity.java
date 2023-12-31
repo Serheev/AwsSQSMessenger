@@ -18,13 +18,13 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("notifications")
 public class NotificationEntity implements Persistable<String> {
     @Id
-    String id;
+    private String id;
     @Column("subject")
-    String subject;
+    private String subject;
     @Column("text")
-    String text;
+    private String text;
     @Column("recipient_uid")
-    String recipientUid;
+    private String recipientUid;
 
     @Transient
     private RecipientEntity recipient;
